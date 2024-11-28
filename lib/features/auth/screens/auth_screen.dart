@@ -38,106 +38,108 @@ class _AuthScreenState extends State<AuthScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const Text(
-                "Welcome To My Amazaon App",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              ListTile(
-                tileColor: _auth == Auth.signup
-                    ? GlobalVar.backgroundColor
-                    : GlobalVar.greyBackgroundColor,
-                title: const Text(
-                  "Create Account",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVar.secondaryColor,
-                  value: Auth.signup,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
-              ),
-              if (_auth == Auth.signup)
-                Container(
-                  color: GlobalVar.backgroundColor,
-                  padding: const EdgeInsets.all(8),
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _nameController,
-                          hintText: "Name",
-                        ),
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: "Email",
-                        ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: "Password",
-                        ),
-                        MyCustomeButton(
-                          txt: "Sign Up",
-                          onClick: () {},
-                        ),
-                      ],
-                    ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Text(
+                  "Welcome To My Amazaon App",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-              ListTile(
-                tileColor: _auth == Auth.signin
-                    ? GlobalVar.backgroundColor
-                    : GlobalVar.greyBackgroundColor,
-                title: const Text(
-                  "Sign In",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVar.secondaryColor,
-                  value: Auth.signin,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
-              ),
-              if (_auth == Auth.signin)
-                Container(
-                  color: GlobalVar.backgroundColor,
-                  padding: const EdgeInsets.all(8),
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: "Email",
-                        ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: "Password",
-                        ),
-                        MyCustomeButton(
-                          txt: "Sign In",
-                          onClick: () {},
-                        ),
-                      ],
-                    ),
+                ListTile(
+                  tileColor: _auth == Auth.signup
+                      ? GlobalVar.backgroundColor
+                      : GlobalVar.greyBackgroundColor,
+                  title: const Text(
+                    "Create Account",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  leading: Radio(
+                    activeColor: GlobalVar.secondaryColor,
+                    value: Auth.signup,
+                    groupValue: _auth,
+                    onChanged: (Auth? val) {
+                      setState(() {
+                        _auth = val!;
+                      });
+                    },
                   ),
                 ),
-            ],
+                if (_auth == Auth.signup)
+                  Container(
+                    color: GlobalVar.backgroundColor,
+                    padding: const EdgeInsets.all(8),
+                    child: Form(
+                      key: _signUpFormKey,
+                      child: Column(
+                        children: [
+                          CustomTextField(
+                            controller: _nameController,
+                            hintText: "Name",
+                          ),
+                          CustomTextField(
+                            controller: _emailController,
+                            hintText: "Email",
+                          ),
+                          CustomTextField(
+                            controller: _passwordController,
+                            hintText: "Password",
+                          ),
+                          MyCustomeButton(
+                            txt: "Sign Up",
+                            onClick: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ListTile(
+                  tileColor: _auth == Auth.signin
+                      ? GlobalVar.backgroundColor
+                      : GlobalVar.greyBackgroundColor,
+                  title: const Text(
+                    "Sign In",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  leading: Radio(
+                    activeColor: GlobalVar.secondaryColor,
+                    value: Auth.signin,
+                    groupValue: _auth,
+                    onChanged: (Auth? val) {
+                      setState(() {
+                        _auth = val!;
+                      });
+                    },
+                  ),
+                ),
+                if (_auth == Auth.signin)
+                  Container(
+                    color: GlobalVar.backgroundColor,
+                    padding: const EdgeInsets.all(8),
+                    child: Form(
+                      key: _signInFormKey,
+                      child: Column(
+                        children: [
+                          CustomTextField(
+                            controller: _emailController,
+                            hintText: "Email",
+                          ),
+                          CustomTextField(
+                            controller: _passwordController,
+                            hintText: "Password",
+                          ),
+                          MyCustomeButton(
+                            txt: "Sign In",
+                            onClick: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
