@@ -4,7 +4,11 @@ class MyCustomeButton extends StatelessWidget {
   final String txt;
   final VoidCallback onClick;
 
-  const MyCustomeButton({super.key, required this.txt, required this.onClick});
+  const MyCustomeButton(
+      {super.key,
+      required this.txt,
+      required this.onClick,
+      required Color backgroundColor});
 
   @override
   Widget build(BuildContext context) {

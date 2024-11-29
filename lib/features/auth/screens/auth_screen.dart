@@ -23,6 +23,9 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+
+  bool _isPasswordVisible = false;
+
   @override
   void dispose() {
     super.dispose();
@@ -34,113 +37,283 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalVar.greyBackgroundColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const Text(
-                "Welcome To My Amazaon App",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              ListTile(
-                tileColor: _auth == Auth.signup
-                    ? GlobalVar.backgroundColor
-                    : GlobalVar.greyBackgroundColor,
-                title: const Text(
-                  "Create Account",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVar.secondaryColor,
-                  value: Auth.signup,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
-              ),
-              if (_auth == Auth.signup)
-                Container(
-                  color: GlobalVar.backgroundColor,
-                  padding: const EdgeInsets.all(8),
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _nameController,
-                          hintText: "Name",
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Logo and Title
+                const Center(
+                  child: Column(
+                    children: [
+                      FlutterLogo(size: 100),
+                      SizedBox(height: 16),
+                      Text(
+                        "Welcome to My Amazon App",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: GlobalVar.secondaryColor,
                         ),
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: "Email",
-                        ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: "Password",
-                        ),
-                        MyCustomeButton(
-                          txt: "Sign Up",
-                          onClick: () {},
-                        ),
-                      ],
-                    ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
-              ListTile(
-                tileColor: _auth == Auth.signin
-                    ? GlobalVar.backgroundColor
-                    : GlobalVar.greyBackgroundColor,
-                title: const Text(
-                  "Sign In",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVar.secondaryColor,
-                  value: Auth.signin,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
-              ),
-              if (_auth == Auth.signin)
-                Container(
-                  color: GlobalVar.backgroundColor,
-                  padding: const EdgeInsets.all(8),
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: "Email",
+                const SizedBox(height: 32),
+
+                // Authentication Type Selection
+                Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      // Sign Up Option
+                      _buildAuthOptionTile(
+                        title: "Create Account",
+                        value: Auth.signup,
+                        context: context,
+                      ),
+
+                      // Sign Up Form
+                      if (_auth == Auth.signup)
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Form(
+                            key: _signUpFormKey,
+                            child: Column(
+                              children: [
+                                CustomTextField(
+                                  controller: _nameController,
+                                  hintText: "Full Name",
+                                  prefixIcon: Icons.person_outline,
+                                ),
+                                const SizedBox(height: 16),
+                                CustomTextField(
+                                  controller: _emailController,
+                                  hintText: "Email Address",
+                                  prefixIcon: Icons.email_outlined,
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                const SizedBox(height: 16),
+                                CustomTextField(
+                                  controller: _passwordController,
+                                  hintText: "Password",
+                                  prefixIcon: Icons.lock_outline,
+                                  obscureText: !_isPasswordVisible,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isPasswordVisible =
+                                            !_isPasswordVisible;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(height: 24),
+                                MyCustomeButton(
+                                  txt: "Sign Up",
+                                  onClick: _performSignUp,
+                                  backgroundColor: GlobalVar.secondaryColor,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: "Password",
+
+                      // Sign In Option
+                      _buildAuthOptionTile(
+                        title: "Sign In",
+                        value: Auth.signin,
+                        context: context,
+                      ),
+
+                      // Sign In Form
+                      if (_auth == Auth.signin)
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Form(
+                            key: _signInFormKey,
+                            child: Column(
+                              children: [
+                                CustomTextField(
+                                  controller: _emailController,
+                                  hintText: "Email Address",
+                                  prefixIcon: Icons.email_outlined,
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                const SizedBox(height: 16),
+                                CustomTextField(
+                                  controller: _passwordController,
+                                  hintText: "Password",
+                                  prefixIcon: Icons.lock_outline,
+                                  obscureText: !_isPasswordVisible,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isPasswordVisible =
+                                            !_isPasswordVisible;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // Implement forgot password
+                                    },
+                                    child: const Text(
+                                      "Forgot Password?",
+                                      style: TextStyle(
+                                        color: GlobalVar.secondaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                MyCustomeButton(
+                                  txt: "Sign In",
+                                  onClick: _performSignIn,
+                                  backgroundColor: GlobalVar.secondaryColor,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        MyCustomeButton(
-                          txt: "Sign In",
-                          onClick: () {},
-                        ),
-                      ],
-                    ),
+                    ],
                   ),
                 ),
-            ],
+
+                // Social Login or Alternative Options
+                const SizedBox(height: 24),
+                _buildSocialLoginOptions(),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildAuthOptionTile({
+    required String title,
+    required Auth value,
+    required BuildContext context,
+  }) {
+    return ListTile(
+      tileColor: _auth == value
+          ? GlobalVar.backgroundColor.withOpacity(0.1)
+          : Colors.transparent,
+      title: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: _auth == value ? GlobalVar.secondaryColor : Colors.black54,
+        ),
+      ),
+      leading: Radio<Auth>(
+        activeColor: GlobalVar.secondaryColor,
+        value: value,
+        groupValue: _auth,
+        onChanged: (Auth? val) {
+          setState(() {
+            _auth = val!;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildSocialLoginOptions() {
+    return Column(
+      children: [
+        Text(
+          "or continue with",
+          style: TextStyle(color: Colors.grey[600]),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildSocialLoginButton(
+              icon: Icons.g_mobiledata,
+              onTap: () {
+                // Implement Google Sign-In
+              },
+            ),
+            const SizedBox(width: 16),
+            _buildSocialLoginButton(
+              icon: Icons.facebook,
+              onTap: () {
+                // Implement Facebook Sign-In
+              },
+            ),
+            const SizedBox(width: 16),
+            _buildSocialLoginButton(
+              icon: Icons.apple,
+              onTap: () {
+                // Implement Apple Sign-In
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialLoginButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey[300]!),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(
+          icon,
+          size: 36,
+          color: Colors.black54,
+        ),
+      ),
+    );
+  }
+
+  void _performSignUp() {
+    if (_signUpFormKey.currentState!.validate()) {
+      // Implement sign-up logic
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign Up Attempted')),
+      );
+    }
+  }
+
+  void _performSignIn() {
+    if (_signInFormKey.currentState!.validate()) {
+      // Implement sign-in logic
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign In Attempted')),
+      );
+    }
   }
 }
