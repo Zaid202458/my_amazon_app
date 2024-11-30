@@ -3,6 +3,9 @@ import 'package:my_amazon_app/common/widgets/custom_buttons.dart';
 import 'package:my_amazon_app/common/widgets/custom_textfields.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
 import 'package:my_amazon_app/features/auth/services/auth_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:my_amazon_app/providers/language_provider.dart';
 
 enum Auth {
   signin,
@@ -18,7 +21,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  Auth _auth = Auth.signup;
+  Auth _auth = Auth.signin;
   final _signInFormKey = GlobalKey<FormState>();
   final _signUpFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -40,340 +43,194 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    final isArabic = languageProvider.isArabic;
+
     return Scaffold(
-      backgroundColor: GlobalVar.backgroundColor,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              GlobalVar.backgroundColor,
-              Colors.white,
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Updated Logo and Title
-                  Center(
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 2,
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
+      backgroundColor: GlobalVar.greyBackgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Amazon Logo
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Image.asset(
+                  'assets/images/amazon_in.png',
+                  height: 50,
+                ),
+              ),
+              const SizedBox(height: 20),
+              
+              // Auth Card
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Title
+                    Text(
+                      _auth == Auth.signin ? l10n.signIn : l10n.createAccount,
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Sign Up Form
+                    if (_auth == Auth.signup)
+                      Form(
+                        key: _signUpFormKey,
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                              controller: _nameController,
+                              hintText: l10n.fullName,
+                              prefixIcon: Icons.person_outline,
+                            ),
+                            const SizedBox(height: 10),
+                            CustomTextField(
+                              controller: _emailController,
+                              hintText: l10n.emailAddress,
+                              prefixIcon: Icons.email_outlined,
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            const SizedBox(height: 10),
+                            CustomTextField(
+                              controller: _passwordController,
+                              hintText: l10n.password,
+                              prefixIcon: Icons.lock_outline,
+                              obscureText: !_isPasswordVisible,
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
                               ),
-                            ],
-                          ),
-                          child: const FlutterLogo(size: 80),
+                            ),
+                            const SizedBox(height: 15),
+                            MyCustomeButton(
+                              txt: l10n.createAccount,
+                              onClick: _isLoading ? null : _performSignUp,
+                              backgroundColor: GlobalVar.secondaryColor,
+                              isLoading: _isLoading,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 24),
-                        const Text(
-                          "Welcome to My Amazon App",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: GlobalVar.secondaryColor,
-                            letterSpacing: 0.5,
-                          ),
-                          textAlign: TextAlign.center,
+                      ),
+
+                    // Sign In Form
+                    if (_auth == Auth.signin)
+                      Form(
+                        key: _signInFormKey,
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                              controller: _emailController,
+                              hintText: l10n.emailAddress,
+                              prefixIcon: Icons.email_outlined,
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            const SizedBox(height: 10),
+                            CustomTextField(
+                              controller: _passwordController,
+                              hintText: l10n.password,
+                              prefixIcon: Icons.lock_outline,
+                              obscureText: !_isPasswordVisible,
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
+                              ),
+                            ),
+                            Align(
+                              alignment: isArabic ? Alignment.centerLeft : Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () {
+                                  // Implement forgot password
+                                },
+                                child: Text(
+                                  l10n.forgotPassword,
+                                  style: const TextStyle(
+                                    color: GlobalVar.secondaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            MyCustomeButton(
+                              txt: l10n.signIn,
+                              onClick: _isLoading ? null : _performSignIn,
+                              backgroundColor: GlobalVar.secondaryColor,
+                              isLoading: _isLoading,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 8),
+                      ),
+
+                    const SizedBox(height: 20),
+                    
+                    // Switch Auth Mode
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
                         Text(
-                          "Sign in to continue",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[600],
+                          _auth == Auth.signin
+                              ? l10n.dontHaveAccount
+                              : l10n.alreadyHaveAccount,
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _auth = _auth == Auth.signin ? Auth.signup : Auth.signin;
+                            });
+                          },
+                          child: Text(
+                            _auth == Auth.signin ? l10n.createAccount : l10n.signIn,
+                            style: const TextStyle(
+                              color: GlobalVar.secondaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 40),
 
-                  // Updated Card Style
-                  Card(
-                    elevation: 8,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: Colors.grey.withOpacity(0.1),
-                          width: 1,
-                        ),
+                    const Divider(height: 20),
+
+                    // Terms and Conditions
+                    Text(
+                      'By continuing, you agree to Amazon\'s Conditions of Use and Privacy Notice.',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 12,
                       ),
-                      child: Column(
-                        children: [
-                          // Sign Up Option
-                          _buildAuthOptionTile(
-                            title: "Create Account",
-                            value: Auth.signup,
-                            context: context,
-                          ),
-
-                          // Sign Up Form
-                          if (_auth == Auth.signup)
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Form(
-                                key: _signUpFormKey,
-                                child: Column(
-                                  children: [
-                                    CustomTextField(
-                                      controller: _nameController,
-                                      hintText: "Full Name",
-                                      prefixIcon: Icons.person_outline,
-                                    ),
-                                    const SizedBox(height: 16),
-                                    CustomTextField(
-                                      controller: _emailController,
-                                      hintText: "Email Address",
-                                      prefixIcon: Icons.email_outlined,
-                                      keyboardType: TextInputType.emailAddress,
-                                    ),
-                                    const SizedBox(height: 16),
-                                    CustomTextField(
-                                      controller: _passwordController,
-                                      hintText: "Password",
-                                      prefixIcon: Icons.lock_outline,
-                                      obscureText: !_isPasswordVisible,
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          _isPasswordVisible
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            _isPasswordVisible =
-                                                !_isPasswordVisible;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(height: 24),
-                                    MyCustomeButton(
-                                      txt: "Sign Up",
-                                      onClick:
-                                          _isLoading ? null : _performSignUp,
-                                      backgroundColor: GlobalVar.secondaryColor,
-                                      isLoading: _isLoading,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                          // Sign In Option
-                          _buildAuthOptionTile(
-                            title: "Sign In",
-                            value: Auth.signin,
-                            context: context,
-                          ),
-
-                          // Sign In Form
-                          if (_auth == Auth.signin)
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Form(
-                                key: _signInFormKey,
-                                child: Column(
-                                  children: [
-                                    CustomTextField(
-                                      controller: _emailController,
-                                      hintText: "Email Address",
-                                      prefixIcon: Icons.email_outlined,
-                                      keyboardType: TextInputType.emailAddress,
-                                    ),
-                                    const SizedBox(height: 16),
-                                    CustomTextField(
-                                      controller: _passwordController,
-                                      hintText: "Password",
-                                      prefixIcon: Icons.lock_outline,
-                                      obscureText: !_isPasswordVisible,
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          _isPasswordVisible
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            _isPasswordVisible =
-                                                !_isPasswordVisible;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: TextButton(
-                                        onPressed: () {
-                                          // Implement forgot password
-                                        },
-                                        child: const Text(
-                                          "Forgot Password?",
-                                          style: TextStyle(
-                                            color: GlobalVar.secondaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16),
-                                    MyCustomeButton(
-                                      txt: "Sign In",
-                                      onClick:
-                                          _isLoading ? null : _performSignIn,
-                                      backgroundColor: GlobalVar.secondaryColor,
-                                      isLoading: _isLoading,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-
-                  // Updated Social Login Style
-                  const SizedBox(height: 32),
-                  _buildSocialLoginOptions(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Update the auth option tile style
-  Widget _buildAuthOptionTile({
-    required String title,
-    required Auth value,
-    required BuildContext context,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: _auth == value
-            ? GlobalVar.secondaryColor.withOpacity(0.1)
-            : Colors.transparent,
-      ),
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: ListTile(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: _auth == value ? GlobalVar.secondaryColor : Colors.black54,
-          ),
-        ),
-        leading: Radio<Auth>(
-          activeColor: GlobalVar.secondaryColor,
-          value: value,
-          groupValue: _auth,
-          onChanged: (Auth? val) {
-            setState(() {
-              _auth = val!;
-            });
-          },
-        ),
-      ),
-    );
-  }
-
-  // Update social login button style
-  Widget _buildSocialLoginButton({
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey[200]!),
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 4,
-                offset: const Offset(0, 2),
+                  ],
+                ),
               ),
             ],
           ),
-          child: Icon(
-            icon,
-            size: 32,
-            color: GlobalVar.secondaryColor,
-          ),
         ),
       ),
-    );
-  }
-
-  Widget _buildSocialLoginOptions() {
-    return Column(
-      children: [
-        Text(
-          "or continue with",
-          style: TextStyle(color: Colors.grey[600]),
-        ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildSocialLoginButton(
-              icon: Icons.g_mobiledata,
-              onTap: () {
-                // Implement Google Sign-In
-              },
-            ),
-            const SizedBox(width: 16),
-            _buildSocialLoginButton(
-              icon: Icons.facebook,
-              onTap: () {
-                // Implement Facebook Sign-In
-              },
-            ),
-            const SizedBox(width: 16),
-            _buildSocialLoginButton(
-              icon: Icons.apple,
-              onTap: () {
-                // Implement Apple Sign-In
-              },
-            ),
-          ],
-        ),
-      ],
     );
   }
 

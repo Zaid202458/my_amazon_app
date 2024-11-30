@@ -15,6 +15,14 @@
     "categoryFashion": "Fashion",
     "categoryHome": "Home",
     
+    "@_CART_MESSAGES": {},
+    "subtotal": "Subtotal: ",
+    "proceedToBuy": "Proceed to Buy",
+    "emptyCart": "Your cart is empty",
+    "removeFromCart": "Remove from Cart",
+    "addToCart": "Add to Cart",
+    "quantity": "Quantity: ",
+    
     "@_ERROR_MESSAGES": {},
     "errorSomethingWentWrong": "Something went wrong",
     "errorInvalidEmail": "Invalid email address",
@@ -38,5 +46,26 @@
                 "type": "String"
             }
         }
-    }
+    },
+    
+    "@_AUTH_SCREEN": {},
+    "welcomeToAmazon": "Welcome to Amazon",
+    "signInToContinue": "Sign in to continue",
+    "createAccount": "Create Account",
+    "signIn": "Sign In",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "orContinueWith": "or continue with",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithFacebook": "Continue with Facebook",
+    "continueWithApple": "Continue with Apple",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    
+    "@_VALIDATION": {},
+    "enterValidEmail": "Please enter a valid email address",
+    "enterValidPassword": "Password must be at least 6 characters",
+    "enterValidName": "Please enter your name"
 }

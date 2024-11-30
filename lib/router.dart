@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/features/auth/screens/auth_screen.dart';
+import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
 import 'package:my_amazon_app/home/screens/home_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case AuthScreen.routeName:
       return MaterialPageRoute(
+        settings: routeSettings,
         builder: (_) => const AuthScreen(),
       );
-
-    case '/home':
+    case HomeScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const HomeScreen(),
       );
-
+    case CartScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const CartScreen(),
+      );
     default:
       return MaterialPageRoute(
+        settings: routeSettings,
         builder: (_) => const Scaffold(
           body: Center(
-            child: Text("Emshi Yad Men Hana! "),
+            child: Text('Screen does not exist!'),
           ),
         ),
       );

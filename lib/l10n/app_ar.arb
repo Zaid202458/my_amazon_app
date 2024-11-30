@@ -15,6 +15,14 @@
     "categoryFashion": "الأزياء",
     "categoryHome": "المنزل",
     
+    "@_CART_MESSAGES": {},
+    "subtotal": "المجموع الفرعي: ",
+    "proceedToBuy": "المتابعة للشراء",
+    "emptyCart": "سلة التسوق فارغة",
+    "removeFromCart": "إزالة من السلة",
+    "addToCart": "إضافة إلى السلة",
+    "quantity": "الكمية: ",
+    
     "@_ERROR_MESSAGES": {},
     "errorSomethingWentWrong": "حدث خطأ ما",
     "errorInvalidEmail": "عنوان البريد الإلكتروني غير صالح",
@@ -38,5 +46,26 @@
                 "type": "String"
             }
         }
-    }
+    },
+    
+    "@_AUTH_SCREEN": {},
+    "welcomeToAmazon": "مرحباً بك في أمازون",
+    "signInToContinue": "سجل دخول للمتابعة",
+    "createAccount": "إنشاء حساب",
+    "signIn": "تسجيل الدخول",
+    "fullName": "الاسم الكامل",
+    "emailAddress": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "orContinueWith": "أو تابع باستخدام",
+    "continueWithGoogle": "المتابعة باستخدام جوجل",
+    "continueWithFacebook": "المتابعة باستخدام فيسبوك",
+    "continueWithApple": "المتابعة باستخدام آبل",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    
+    "@_VALIDATION": {},
+    "enterValidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "enterValidPassword": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "enterValidName": "يرجى إدخال اسمك"
 }
