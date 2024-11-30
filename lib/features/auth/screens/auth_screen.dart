@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_amazon_app/common/widgets/custom_buttons.dart';
 import 'package:my_amazon_app/common/widgets/custom_textfields.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 
 enum Auth {
   signin,
@@ -24,7 +25,10 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
+  final AuthService authService = AuthService();
+
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -123,8 +127,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                 const SizedBox(height: 24),
                                 MyCustomeButton(
                                   txt: "Sign Up",
-                                  onClick: _performSignUp,
+                                  onClick: _isLoading ? null : _performSignUp,
                                   backgroundColor: GlobalVar.secondaryColor,
+                                  isLoading: _isLoading,
                                 ),
                               ],
                             ),
@@ -190,8 +195,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                 const SizedBox(height: 16),
                                 MyCustomeButton(
                                   txt: "Sign In",
-                                  onClick: _performSignIn,
+                                  onClick: _isLoading ? null : _performSignIn,
                                   backgroundColor: GlobalVar.secondaryColor,
+                                  isLoading: _isLoading,
                                 ),
                               ],
                             ),
@@ -299,21 +305,40 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  void _performSignUp() {
+  void _performSignUp() async {
     if (_signUpFormKey.currentState!.validate()) {
-      // Implement sign-up logic
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign Up Attempted')),
+      setState(() {
+        _isLoading = true;
+      });
+
+      await authService.signUpUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text,
       );
+
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
-  void _performSignIn() {
+  void _performSignIn() async {
     if (_signInFormKey.currentState!.validate()) {
-      // Implement sign-in logic
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign In Attempted')),
+      setState(() {
+        _isLoading = true;
+      });
+
+      await authService.signInUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
       );
+
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 }
