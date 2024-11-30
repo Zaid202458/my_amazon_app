@@ -7,12 +7,12 @@ class MyCustomeButton extends StatelessWidget {
   final bool isLoading;
 
   const MyCustomeButton({
-    Key? key,
+    super.key,
     required this.txt,
     required this.onClick,
     required this.backgroundColor,
     this.isLoading = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

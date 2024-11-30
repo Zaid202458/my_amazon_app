@@ -1,0 +1,42 @@
+{
+    "language": "English",
+    "appTitle": "Amazon Clone",
+    "searchHint": "Search Amazon.in",
+    "dealOfDay": "Deal of the day",
+    "seeAllDeals": "See all deals",
+    "specialDeal": "Special Deal",
+    "home": "Home",
+    "profile": "Profile",
+    "cart": "Cart",
+    "deliveryTo": "Delivery to",
+    "deliveryAddress": "Delivery to John - New York 10001",
+    "categoryMobiles": "Mobiles",
+    "categoryElectronics": "Electronics",
+    "categoryFashion": "Fashion",
+    "categoryHome": "Home",
+    
+    "@_ERROR_MESSAGES": {},
+    "errorSomethingWentWrong": "Something went wrong",
+    "errorInvalidEmail": "Invalid email address",
+    "errorInvalidPassword": "Password must be at least 6 characters",
+    "errorPasswordMismatch": "Passwords do not match",
+    "errorEmptyField": "This field cannot be empty",
+    "errorInvalidCredentials": "Invalid credentials",
+    "errorNetworkIssue": "Network connection error",
+    "errorTryAgain": "Please try again",
+    "errorSessionExpired": "Session expired, please login again",
+    "errorUnauthorized": "Unauthorized access",
+
+    "@_AUTH_MESSAGES": {},
+    "accountCreatedMessage": "Account created! Login with the same credentials!",
+    "loginSuccessMessage": "Login successful!",
+    "logoutSuccessMessage": "Logged out successfully",
+    "welcomeMessage": "Welcome back, {name}",
+    "@welcomeMessage": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    }
+}

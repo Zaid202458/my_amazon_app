@@ -43,7 +43,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       backgroundColor: GlobalVar.backgroundColor,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -240,7 +240,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     MyCustomeButton(
                                       txt: "Sign In",
                                       onClick:
-                                          _isLoading ? null : _performSignUp,
+                                          _isLoading ? null : _performSignIn,
                                       backgroundColor: GlobalVar.secondaryColor,
                                       isLoading: _isLoading,
                                     ),
@@ -396,21 +396,21 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  // void _performSignIn() async {
-  //   if (_signInFormKey.currentState!.validate()) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
+  void _performSignIn() async {
+    if (_signInFormKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
 
-  //     await authService.signInUser(
-  //       context: context,
-  //       email: _emailController.text,
-  //       password: _passwordController.text,
-  //     );
+      await authService.signInUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
 
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //   }
-  // }
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 }

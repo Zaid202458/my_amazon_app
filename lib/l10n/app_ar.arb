@@ -1,0 +1,42 @@
+{
+    "language": "العربية",
+    "appTitle": "أمازون",
+    "searchHint": "البحث في أمازون",
+    "dealOfDay": "صفقة اليوم",
+    "seeAllDeals": "عرض جميع العروض",
+    "specialDeal": "عرض خاص",
+    "home": "الرئيسية",
+    "profile": "الملف الشخصي",
+    "cart": "السلة",
+    "deliveryTo": "التوصيل إلى",
+    "deliveryAddress": "التوصيل إلى جون - نيويورك 10001",
+    "categoryMobiles": "الجوالات",
+    "categoryElectronics": "الإلكترونيات",
+    "categoryFashion": "الأزياء",
+    "categoryHome": "المنزل",
+    
+    "@_ERROR_MESSAGES": {},
+    "errorSomethingWentWrong": "حدث خطأ ما",
+    "errorInvalidEmail": "عنوان البريد الإلكتروني غير صالح",
+    "errorInvalidPassword": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "errorPasswordMismatch": "كلمات المرور غير متطابقة",
+    "errorEmptyField": "لا يمكن ترك هذا الحقل فارغاً",
+    "errorInvalidCredentials": "بيانات الاعتماد غير صالحة",
+    "errorNetworkIssue": "خطأ في الاتصال بالشبكة",
+    "errorTryAgain": "يرجى المحاولة مرة أخرى",
+    "errorSessionExpired": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى",
+    "errorUnauthorized": "وصول غير مصرح به",
+
+    "@_AUTH_MESSAGES": {},
+    "accountCreatedMessage": "تم إنشاء الحساب! قم بتسجيل الدخول بنفس البيانات!",
+    "loginSuccessMessage": "تم تسجيل الدخول بنجاح!",
+    "logoutSuccessMessage": "تم تسجيل الخروج بنجاح",
+    "welcomeMessage": "مرحباً بعودتك، {name}",
+    "@welcomeMessage": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    }
+}
