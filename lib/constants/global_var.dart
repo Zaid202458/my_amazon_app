@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.3.12:3000';
+String uri = 'http://10.0.2.2:3000';  // 10.0.2.2 is the special IP for localhost when using Android emulator
 
 class GlobalVar {
   static const appBarColor = LinearGradient(

@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_amazon_app/constants/global_var.dart';
@@ -51,7 +52,14 @@ class AuthService {
       );
     } catch (e) {
       final l10n = AppLocalizations.of(context)!;
-      showSnackBar(context, l10n.errorSomethingWentWrong);
+      print('Sign-up error: $e'); // Log the specific error
+      if (e is SocketException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
+      } else if (e is FormatException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+      } else {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
+      }
     }
   }
 
@@ -82,15 +90,22 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           showSnackBar(context, l10n.loginSuccessMessage);
           Navigator.pushNamedAndRemoveUntil(
-            context, 
-            '/home', 
+            context,
+            '/home',
             (route) => false,
           );
         },
       );
     } catch (e) {
       final l10n = AppLocalizations.of(context)!;
-      showSnackBar(context, l10n.errorSomethingWentWrong);
+      print('Sign-in error: $e'); // Log the specific error
+      if (e is SocketException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
+      } else if (e is FormatException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+      } else {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
+      }
     }
   }
 
@@ -128,7 +143,15 @@ class AuthService {
         userProvider.setUserFromModel(User.fromJson(userRes.body));
       }
     } catch (e) {
-      showSnackBar(context, e.toString());
+      final l10n = AppLocalizations.of(context)!;
+      print('Get user data error: $e'); // Log the specific error
+      if (e is SocketException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
+      } else if (e is FormatException) {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+      } else {
+        showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
+      }
     }
   }
 }
