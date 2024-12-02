@@ -10,7 +10,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
 
 /// شاشة الصفحة الرئيسية لتطبيق أمازون
-/// تعرض العناصر الرئيسية مثل شريط البحث وشريط العنوان والفئات والعروض
+/// تحتوي على العناصر التالية:
+/// - شريط البحث في الأعلى مع أيقونة البحث الصوتي
+/// - صندوق العنوان لعرض موقع التوصيل
+/// - الفئات الرئيسية للتسوق
+/// - عرض شريحة الصور للمنتجات المميزة
+/// - عروض اليوم للمنتجات المخفضة
+/// - شريط تنقل سفلي للتنقل بين الصفحات الرئيسية
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
   const HomeScreen({super.key});
@@ -19,16 +25,30 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+/// حالة شاشة الصفحة الرئيسية
+/// تدير:
+/// - التنقل بين صفحات التطبيق
+/// - عرض المنتجات والفئات
+/// - التفاعل مع شريط البحث
+/// - عرض العناوين والإعدادات
 class _HomeScreenState extends State<HomeScreen> {
-  /// مؤشر الصفحة الحالية في شريط التنقل السفلي
+  /// مؤشر الصفحة المحددة في شريط التنقل السفلي
+  /// 0: الصفحة الرئيسية
+  /// 1: الملف الشخصي
+  /// 2: سلة التسوق
   int _selectedIndex = 0;
 
-  /// التنقل إلى شاشة السلة
+  /// الانتقال إلى صفحة سلة التسوق
+  /// يستخدم عند النقر على أيقونة السلة
   void navigateToCart() {
     Navigator.pushNamed(context, CartScreen.routeName);
   }
 
-  /// تحديث مؤشر الصفحة الحالية عند النقر
+  /// معالجة النقر على عناصر شريط التنقل السفلي
+  /// [index] رقم العنصر المحدد في شريط التنقل
+  /// 0: الرئيسية
+  /// 1: الملف الشخصي
+  /// 2: السلة
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -42,6 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  /// بناء واجهة الصفحة الرئيسية
+  /// يتكون من:
+  /// - شريط علوي يحتوي على حقل البحث وأيقونة البحث الصوتي
+  /// - قسم رئيسي يعرض العنوان والفئات والعروض
+  /// - شريط تنقل سفلي للتنقل بين الصفحات
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -101,6 +126,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 42,
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: const Icon(Icons.mic, color: Colors.black, size: 25),
+              ),
+              // زر تغيير اللغة
+              Container(
+                color: Colors.transparent,
+                height: 42,
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: IconButton(
+                  icon: Text(
+                    languageProvider.isArabic ? 'EN' : 'عربي',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () async {
+                    await languageProvider.toggleLanguage();
+                  },
+                ),
               ),
             ],
           ),

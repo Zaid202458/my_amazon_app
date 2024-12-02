@@ -25,4 +25,13 @@ class LanguageProvider with ChangeNotifier {
   }
 
   bool get isArabic => _currentLocale.languageCode == 'ar';
+
+  /// تبديل اللغة بين العربية والإنجليزية
+  Future<void> toggleLanguage() async {
+    if (isArabic) {
+      await changeLanguage('en');
+    } else {
+      await changeLanguage('ar');
+    }
+  }
 }
