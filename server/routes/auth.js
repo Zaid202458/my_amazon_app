@@ -51,6 +51,7 @@ authRouter.post("/api/signin", async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
+    
 });
 
 // VALIDATE TOKEN
@@ -76,5 +77,6 @@ authRouter.get("/", auth, async (req, res) => {
     const user = await User.findById(req.user);
     res.json({ ...user._doc, token: req.token });
 });
+
 
 module.exports = authRouter;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/features/auth/screens/auth_screen.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
+import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
 import 'package:my_amazon_app/home/screens/home_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -19,6 +20,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const CartScreen(),
+      );
+    case ProfileScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const ProfileScreen(),
       );
     default:
       return MaterialPageRoute(

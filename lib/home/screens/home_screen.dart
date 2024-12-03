@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
 import 'package:my_amazon_app/home/widgets/address_box.dart';
 import 'package:my_amazon_app/home/widgets/carousel_images.dart';
 import 'package:my_amazon_app/home/widgets/deal_ofday.dart';
@@ -44,6 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pushNamed(context, CartScreen.routeName);
   }
 
+  void navigateToProfile() {
+    Navigator.pushNamed(context, ProfileScreen.routeName);
+  }
+
   /// معالجة النقر على عناصر شريط التنقل السفلي
   /// [index] رقم العنصر المحدد في شريط التنقل
   /// 0: الرئيسية
@@ -56,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // التنقل إلى الشاشة المناسبة
     switch (index) {
+      case 1: // Profile
+        navigateToProfile();
+        break;
       case 2: // Cart
         navigateToCart();
         break;
@@ -91,14 +99,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
-                      textAlign: languageProvider.isArabic ? TextAlign.right : TextAlign.left,
+                      textAlign: languageProvider.isArabic
+                          ? TextAlign.right
+                          : TextAlign.left,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},
                           child: const Padding(
                             padding: EdgeInsets.only(left: 6),
-                            child: Icon(Icons.search, color: Colors.black, size: 23),
+                            child: Icon(Icons.search,
+                                color: Colors.black, size: 23),
                           ),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.mic),
+                          onPressed: () {},
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -109,7 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(7)),
-                          borderSide: BorderSide(color: Colors.black38, width: 1),
+                          borderSide:
+                              BorderSide(color: Colors.black38, width: 1),
                         ),
                         hintText: l10n.searchHint,
                         hintStyle: const TextStyle(
@@ -122,27 +138,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                color: Colors.transparent,
-                height: 42,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: const Icon(Icons.mic, color: Colors.black, size: 25),
-              ),
-              // زر تغيير اللغة
-              Container(
-                color: Colors.transparent,
-                height: 42,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: IconButton(
-                  icon: Text(
-                    languageProvider.isArabic ? 'EN' : 'عربي',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Row(
+                  children: [
+                    // زر تغيير اللغة
+                    IconButton(
+                      icon: const Icon(Icons.language),
+                      onPressed: () {
+                        final provider = Provider.of<LanguageProvider>(
+                          context,
+                          listen: false,
+                        );
+                        provider.toggleLanguage();
+                      },
                     ),
-                  ),
-                  onPressed: () async {
-                    await languageProvider.toggleLanguage();
-                  },
+                    // زر السلة
+                    IconButton(
+                      onPressed: navigateToCart,
+                      icon: const Icon(Icons.shopping_cart_outlined),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -150,7 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Directionality(
-        textDirection: languageProvider.isArabic ? TextDirection.rtl : TextDirection.ltr,
+        textDirection:
+            languageProvider.isArabic ? TextDirection.rtl : TextDirection.ltr,
         child: SingleChildScrollView(
           child: Column(
             children: [

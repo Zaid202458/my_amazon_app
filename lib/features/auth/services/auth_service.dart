@@ -5,9 +5,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/home/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_amazon_app/constants/error_handling.dart' hide showSnackBar;
+import 'package:my_amazon_app/constants/error_handling.dart';
 import 'package:my_amazon_app/constants/utils.dart';
 import 'package:my_amazon_app/models/user.dart';
 import 'package:my_amazon_app/providers/user_provider.dart';
@@ -69,6 +70,7 @@ class AuthService {
     required String email,
     required String password,
   }) async {
+
     try {
       http.Response res = await http.post(
         Uri.parse('$uri/api/signin'),
@@ -91,7 +93,7 @@ class AuthService {
           showSnackBar(context, l10n.loginSuccessMessage);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            '/home',
+            HomeScreen.routeName,
             (route) => false,
           );
         },
@@ -108,6 +110,7 @@ class AuthService {
       }
     }
   }
+
 
   // get user data
   Future<void> getUserData(BuildContext context) async {

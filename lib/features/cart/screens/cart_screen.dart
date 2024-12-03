@@ -3,9 +3,9 @@ import 'package:my_amazon_app/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:my_amazon_app/providers/language_provider.dart';
+import 'package:my_amazon_app/providers/cart_provider.dart';
+import 'package:my_amazon_app/features/cart/widgets/cart_item_card.dart';
 
-/// شاشة عربة التسوق
-/// تعرض المنتجات المضافة للسلة وإجمالي السعر وخيارات الدفع
 class CartScreen extends StatefulWidget {
   static const String routeName = '/cart';
   const CartScreen({super.key});
@@ -19,6 +19,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final languageProvider = Provider.of<LanguageProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final isArabic = languageProvider.isArabic;
 
     return Scaffold(
@@ -61,69 +62,114 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: _buildCartContent(context, l10n, cartProvider),
+    );
+  }
+
+  Widget _buildCartContent(BuildContext context, AppLocalizations l10n, CartProvider cartProvider) {
+    final isCartEmpty = cartProvider.itemCount == 0;
+
+    if (isCartEmpty) {
+      return Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text(
-                    l10n.subtotal,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const Text(
-                    '\$0.00',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+            Icon(
+              Icons.shopping_cart_outlined,
+              size: 86,
+              color: Colors.grey[400],
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  backgroundColor: Colors.yellow[600],
-                ),
-                child: Text(
-                  l10n.proceedToBuy,
-                  style: const TextStyle(
-                    color: Colors.black,
+            const SizedBox(height: 20),
+            Text(
+              l10n.emptyCart,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Colors.grey[600],
                   ),
-                ),
-              ),
             ),
-            const SizedBox(height: 15),
-            Container(
-              color: Colors.black12.withOpacity(0.08),
-              height: 1,
-            ),
-            const SizedBox(height: 5),
-            // هنا سيتم عرض قائمة المنتجات في السلة
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 0, // سيتم تحديثه لاحقاً مع عدد المنتجات الفعلي
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const Center(
-                    child: Text('سلة التسوق فارغة'),
-                  ),
-                );
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/products');
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: GlobalVar.secondaryColor,
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+              ),
+              child: Text(l10n.startShopping),
             ),
           ],
         ),
+      );
+    }
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text(
+                  l10n.subtotal,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  '\$${cartProvider.totalAmount.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              onPressed: cartProvider.itemCount == 0
+                  ? null
+                  : () {
+                      // Navigate to checkout
+                      Navigator.pushNamed(context, '/checkout');
+                    },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                backgroundColor: Colors.yellow[600],
+              ),
+              child: Text(
+                l10n.proceedToBuy,
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Container(
+            color: Colors.black12.withOpacity(0.08),
+            height: 1,
+          ),
+          const SizedBox(height: 5),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: cartProvider.items.length,
+            itemBuilder: (context, index) {
+              final item = cartProvider.items.values.toList()[index];
+              final productId = cartProvider.items.keys.toList()[index];
+              return CartItemCard(
+                productId: productId,
+                item: item,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 }
+
