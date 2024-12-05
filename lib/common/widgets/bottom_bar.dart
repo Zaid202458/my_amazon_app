@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_amazon_app/constants/global_var.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
-import 'package:my_amazon_app/features/home/screens/home_screen.dart';
 import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
+import 'package:my_amazon_app/home/screens/home_screen.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';
@@ -45,8 +46,16 @@ class _BottomBarState extends State<BottomBar> {
             label: l10n.profile,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            activeIcon: const Icon(Icons.shopping_cart),
+            icon: const badges.Badge(
+              badgeContent:
+                  Text('2', style: TextStyle(color: Colors.white)),
+              child: Icon(Icons.shopping_cart_outlined),
+            ),
+            activeIcon: badges.Badge(
+              badgeContent:
+                  const Text('2', style: TextStyle(color: Colors.white)),
+              child: const Icon(Icons.shopping_cart),
+            ),
             label: l10n.cart,
           ),
         ],
