@@ -59,7 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Image.asset(
-                  'assets/images/amazon_in.png',
+                  'assets/images/amazon-logo.png',
                   height: 50,
                 ),
               ),

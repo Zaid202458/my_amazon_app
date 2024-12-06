@@ -37,7 +37,7 @@ class _CartScreenState extends State<CartScreen> {
               Container(
                 alignment: Alignment.topLeft,
                 child: Image.asset(
-                  'assets/images/amazon_in.png',
+                  'assets/images/amazon-logo.png',
                   width: 120,
                   height: 45,
                   color: Colors.black,

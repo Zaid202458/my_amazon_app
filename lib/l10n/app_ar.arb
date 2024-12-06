@@ -1,9 +1,9 @@
 {
     "language": "العربية",
-    "appTitle": "أمازون",
+    "appTitle": "أمازون كلون",
     "searchHint": "البحث في أمازون",
     "dealOfDay": "صفقة اليوم",
-    "seeAllDeals": "عرض جميع العروض",
+    "seeAllDeals": "مشاهدة جميع العروض",
     "specialDeal": "عرض خاص",
     "home": "الرئيسية",
     "profile": "الملف الشخصي",
@@ -14,6 +14,7 @@
     "categoryElectronics": "الإلكترونيات",
     "categoryFashion": "الأزياء",
     "categoryHome": "المنزل",
+    "greeting": "مرحباً، ",
     
     "@_PROFILE_MESSAGES": {},
     "turnSeller": "كن بائعاً",
@@ -87,5 +88,17 @@
     "@_VALIDATION": {},
     "enterValidEmail": "يرجى إدخال بريد إلكتروني صحيح",
     "enterValidPassword": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
-    "enterValidName": "يرجى إدخال اسمك"
+    "enterValidName": "يرجى إدخال اسمك",
+    
+    "@_ORDERS_WIDGET": {},
+    "yourOrders": "طلباتك",
+    "seeAll": "عرض الكل",
+    "statusDelivered": "تم التوصيل",
+    "statusInTransit": "قيد الشحن",
+    "statusProcessing": "قيد المعالجة",
+    "statusShipped": "تم الشحن",
+    "statusCancelled": "ملغى",
+    "statusOnHold": "معلق",
+    "statusPending": "قيد الانتظار",
+    "statusRefunded": "تم استرداد المبلغ"
 }

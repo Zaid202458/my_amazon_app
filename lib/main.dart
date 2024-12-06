@@ -15,7 +15,7 @@ import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
-  
+
   runApp(
     MultiProvider(
       providers: [
@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
     return Consumer<LanguageProvider>(
       builder: (context, languageProvider, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'My Amazon',
           locale: languageProvider.currentLocale,
           supportedLocales: const [

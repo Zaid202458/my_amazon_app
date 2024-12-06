@@ -51,10 +51,10 @@ class _BottomBarState extends State<BottomBar> {
                   Text('2', style: TextStyle(color: Colors.white)),
               child: Icon(Icons.shopping_cart_outlined),
             ),
-            activeIcon: badges.Badge(
+            activeIcon: const badges.Badge(
               badgeContent:
-                  const Text('2', style: TextStyle(color: Colors.white)),
-              child: const Icon(Icons.shopping_cart),
+                  Text('2', style: TextStyle(color: Colors.white)),
+              child: Icon(Icons.shopping_cart),
             ),
             label: l10n.cart,
           ),
