@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:my_amazon_app/common/widgets/bottom_bar.dart';
+import 'package:my_amazon_app/shared/widgets/bottom_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:my_amazon_app/features/auth/screens/auth_screen.dart';
 import 'package:my_amazon_app/router.dart';
-import 'package:my_amazon_app/providers/user_provider.dart';
-import 'package:my_amazon_app/providers/language_provider.dart';
-import 'package:my_amazon_app/providers/cart_provider.dart';
+import 'package:my_amazon_app/shared/providers/user_provider.dart';
+import 'package:my_amazon_app/shared/providers/language_provider.dart';
+import 'package:my_amazon_app/shared/providers/cart_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 

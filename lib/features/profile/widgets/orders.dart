@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/global_var.dart';
+import '../../../core/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Orders extends StatefulWidget {

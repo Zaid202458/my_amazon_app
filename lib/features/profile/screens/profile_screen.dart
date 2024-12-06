@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:my_amazon_app/widgets/main_buttons.dart';
-import 'package:my_amazon_app/widgets/orders.dart';
+import 'package:my_amazon_app/features/profile/widgets/main_buttons.dart';
+import 'package:my_amazon_app/features/profile/widgets/orders.dart';
 // import 'package:provider/provider.dart';
 // import 'package:my_amazon_app/providers/user_provider.dart';
-import '../../../widgets/appbar_text.dart';
+import '../widgets/appbar_text.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const String routeName = '/profile';

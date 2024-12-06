@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
 import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
-import 'package:my_amazon_app/home/screens/home_screen.dart';
+import 'package:my_amazon_app/features/home/screens/home_screen.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';

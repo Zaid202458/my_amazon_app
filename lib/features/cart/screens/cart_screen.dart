@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:my_amazon_app/providers/language_provider.dart';
-import 'package:my_amazon_app/providers/cart_provider.dart';
+import 'package:my_amazon_app/shared/providers/language_provider.dart';
+import 'package:my_amazon_app/shared/providers/cart_provider.dart';
 import 'package:my_amazon_app/features/cart/widgets/cart_item_card.dart';
 
 class CartScreen extends StatefulWidget {

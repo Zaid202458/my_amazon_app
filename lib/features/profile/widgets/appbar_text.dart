@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/global_var.dart';
+import '../../../core/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../providers/user_provider.dart';
+import '../../../shared/providers/user_provider.dart';
 
 class AppBarText extends StatelessWidget {
   const AppBarText({super.key});

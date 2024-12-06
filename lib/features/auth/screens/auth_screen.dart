@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/common/widgets/custom_buttons.dart';
-import 'package:my_amazon_app/common/widgets/custom_textfields.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/shared/widgets/custom_buttons.dart';
+import 'package:my_amazon_app/shared/widgets/custom_textfields.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:my_amazon_app/providers/language_provider.dart';
+import 'package:my_amazon_app/shared/providers/language_provider.dart';
 
 enum Auth {
   signin,

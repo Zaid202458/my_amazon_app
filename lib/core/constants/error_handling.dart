@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:my_amazon_app/constants/utils.dart';
+import 'package:my_amazon_app/core/utils/utils.dart';
 
 void httpErrorHandle({
   required http.Response response,

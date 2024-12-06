@@ -4,14 +4,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_amazon_app/common/widgets/bottom_bar.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/shared/widgets/bottom_bar.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_amazon_app/constants/error_handling.dart';
-import 'package:my_amazon_app/constants/utils.dart';
-import 'package:my_amazon_app/models/user.dart';
-import 'package:my_amazon_app/providers/user_provider.dart';
+import 'package:my_amazon_app/core/constants/error_handling.dart';
+import 'package:my_amazon_app/core/utils/utils.dart';
+import 'package:my_amazon_app/shared/models/user.dart';
+import 'package:my_amazon_app/shared/providers/user_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthService {
