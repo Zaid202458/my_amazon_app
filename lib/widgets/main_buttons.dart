@@ -21,19 +21,19 @@ class _MainButtonsState extends State<MainButtons> {
           children: [
             AccountButtons(
               txt: AppLocalizations.of(context)!.yourOrders,
-              OnClick: () {},
+              onClick: () {},
             ),
             AccountButtons(
               txt: AppLocalizations.of(context)!.turnSeller,
-              OnClick: () {},
+              onClick: () {},
             ),
             AccountButtons(
               txt: AppLocalizations.of(context)!.yourWishList,
-              OnClick: () {},
+              onClick: () {},
             ),
             AccountButtons(
               txt: AppLocalizations.of(context)!.logOut,
-              OnClick: () {},
+              onClick: () {},
             ),
           ],
         ),

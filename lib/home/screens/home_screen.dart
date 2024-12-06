@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
-import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
+// import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
 import 'package:my_amazon_app/home/widgets/address_box.dart';
 import 'package:my_amazon_app/home/widgets/carousel_images.dart';
 import 'package:my_amazon_app/home/widgets/deal_ofday.dart';

@@ -3,8 +3,8 @@ import 'package:my_amazon_app/constants/global_var.dart';
 
 class AccountButtons extends StatelessWidget {
   final String txt;
-  final VoidCallback OnClick;
-  const AccountButtons({super.key, required this.txt, required this.OnClick});
+  final VoidCallback onClick;
+  const AccountButtons({super.key, required this.txt, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class AccountButtons extends StatelessWidget {
         color: Colors.white,
       ),
       child: OutlinedButton(
-        onPressed: OnClick,
+        onPressed: onClick,
         style: OutlinedButton.styleFrom(
           foregroundColor: GlobalVar.secondaryColor,
           side: BorderSide.none,
