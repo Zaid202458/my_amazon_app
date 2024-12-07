@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/core/constants/global_var.dart';
-// import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
 import 'package:my_amazon_app/features/home/widgets/address_box.dart';
 import 'package:my_amazon_app/features/home/widgets/carousel_images.dart';
 import 'package:my_amazon_app/features/home/widgets/deal_ofday.dart';
@@ -38,27 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pushNamed(context, CartScreen.routeName);
   }
 
-
-
-  void _onItemTapped(int index) {
-    setState(() {
-    });
-
-    switch (index) {
-      case 0:
-        _pageController.animateToPage(
-          0,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-        break;
-
-      case 1:
-        navigateToCart();
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -80,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 child: Container(
-                  height: 42,
-                  margin: const EdgeInsets.only(left: 15),
+                  height: 40,
+                  margin: const EdgeInsets.only(left: 5),
                   child: Material(
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
@@ -95,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: const Padding(
                             padding: EdgeInsets.only(left: 6),
                             child: Icon(Icons.search,
-                                color: Colors.black, size: 23),
+                                color: Colors.black, size: 20),
                           ),
                         ),
                         suffixIcon: IconButton(
@@ -126,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Row(
                   children: [
                     IconButton(

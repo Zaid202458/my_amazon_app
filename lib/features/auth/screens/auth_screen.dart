@@ -43,8 +43,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final languageProvider = Provider.of<LanguageProvider>(context);
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
     final isArabic = languageProvider.isArabic;
 
     return Scaffold(
