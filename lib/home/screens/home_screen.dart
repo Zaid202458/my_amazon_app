@@ -180,34 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home_outlined),
-            activeIcon: const Icon(Icons.home),
-            label: l10n.home,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person_outline_outlined),
-            activeIcon: const Icon(Icons.person),
-            label: l10n.profile,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            activeIcon: const Icon(Icons.shopping_cart),
-            label: l10n.cart,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: GlobalVar.selectedNavBarColor,
-        unselectedItemColor: GlobalVar.unselectedNavBarColor,
-        backgroundColor: GlobalVar.backgroundColor,
-        iconSize: 28,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.shifting,
-        elevation: 5,
-      ),
+      )  
     );
   }
 }

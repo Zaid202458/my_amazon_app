@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_amazon_app/common/widgets/bottom_bar.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
 import 'package:my_amazon_app/home/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +94,7 @@ class AuthService {
           showSnackBar(context, l10n.loginSuccessMessage);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },

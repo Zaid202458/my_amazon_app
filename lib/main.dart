@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:my_amazon_app/common/widgets/bottom_bar.dart';
 import 'package:my_amazon_app/home/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -81,7 +82,7 @@ class _MyAppState extends State<MyApp> {
           ),
           onGenerateRoute: (settings) => generateRoute(settings),
           home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-              ? const HomeScreen()
+              ? const BottomBar()
               : const AuthScreen(),
         );
       },

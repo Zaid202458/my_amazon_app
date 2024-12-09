@@ -95,7 +95,14 @@ class _CartScreenState extends State<CartScreen> {
                 backgroundColor: GlobalVar.secondaryColor,
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
               ),
-              child: Text(l10n.startShopping),
+              child: Text(
+                l10n.startShopping,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.blue,
+                ),
+              ),
             ),
           ],
         ),
@@ -172,4 +179,3 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-

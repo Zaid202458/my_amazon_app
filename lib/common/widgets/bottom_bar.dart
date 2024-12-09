@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_amazon_app/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
-import 'package:my_amazon_app/features/home/screens/home_screen.dart';
+
 import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:my_amazon_app/home/screens/home_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  static const String routeName = '/actual-home';
+  static const String routeName = '/home';
   const BottomBar({super.key});
 
   @override
@@ -39,16 +41,28 @@ class _BottomBarState extends State<BottomBar> {
             activeIcon: const Icon(Icons.home),
             label: l10n.home,
           ),
+
+
           BottomNavigationBarItem(
             icon: const Icon(Icons.person_outline_outlined),
             activeIcon: const Icon(Icons.person),
             label: l10n.profile,
           ),
+
+
           BottomNavigationBarItem(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            activeIcon: const Icon(Icons.shopping_cart),
+            icon: const badges.Badge(
+              badgeContent: Text('2', style: TextStyle(color: Colors.white)),
+              child: Icon(Icons.shopping_cart_outlined),
+            ),
+            activeIcon: const badges.Badge(
+              badgeContent: Text('2', style: TextStyle(color: Colors.white)),
+              child: Icon(Icons.shopping_cart),
+            ),
             label: l10n.cart,
           ),
+
+          
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: GlobalVar.selectedNavBarColor,

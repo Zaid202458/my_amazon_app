@@ -53,12 +53,14 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          _buildWelcomeBar(context, userProvider),
-          const SizedBox(height: 20),
-          _buildProfileOptions(context, l10n),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildWelcomeBar(context, userProvider),
+            const SizedBox(height: 20),
+            _buildProfileOptions(context, l10n),
+          ],
+        ),
       ),
     );
   }
@@ -68,15 +70,29 @@ class ProfileScreen extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: GlobalVar.appBarGradient,
       ),
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Row(
         children: [
+          Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[200],
+            ),
+            child: const Icon(
+              Icons.person_outline,
+              size: 40,
+              color: GlobalVar.secondaryColor,
+            ),
+          ),
+          const SizedBox(width: 15),
           RichText(
             text: TextSpan(
               text: 'Hello, ',
               style: const TextStyle(
                 fontSize: 22,
-                color: Colors.black,
+                color: Colors.black87,
+                fontWeight: FontWeight.w400,
               ),
               children: [
                 TextSpan(
@@ -96,33 +112,88 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildProfileOptions(BuildContext context, AppLocalizations l10n) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Column(
         children: [
-          ListTile(
-            title: Text(l10n.yourOrders),
-            leading: const Icon(Icons.shopping_bag_outlined),
-            onTap: () {
-              // TODO: Navigate to orders screen
-            },
-          ),
-          ListTile(
-            title: Text(l10n.turnSeller),
-            leading: const Icon(Icons.business_center_outlined),
-            onTap: () {
-              // TODO: Navigate to seller registration
-            },
-          ),
-          ListTile(
-            title: Text(l10n.logOut),
-            leading: const Icon(Icons.logout_outlined),
-            onTap: () {
-              // TODO: Implement logout
-            },
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              children: [
+                _buildOptionTile(
+                  icon: Icons.shopping_bag_outlined,
+                  title: l10n.yourOrders,
+                  onTap: () {
+                    // TODO: Navigate to orders screen
+                  },
+                  showBorder: true,
+                ),
+                _buildOptionTile(
+                  icon: Icons.business_center_outlined,
+                  title: l10n.turnSeller,
+                  onTap: () {
+                    // TODO: Navigate to seller registration
+                  },
+                  showBorder: true,
+                ),
+                _buildOptionTile(
+                  icon: Icons.logout_outlined,
+                  title: l10n.logOut,
+                  onTap: () {
+                    // TODO: Implement logout
+                  },
+                  showBorder: false,
+                  isDestructive: true,
+                ),
+              ],
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildOptionTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    bool showBorder = true,
+    bool isDestructive = false,
+  }) {
+    return Column(
+      children: [
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          leading: Icon(
+            icon,
+            color: isDestructive ? Colors.red : GlobalVar.secondaryColor,
+            size: 28,
+          ),
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: isDestructive ? Colors.red : Colors.black87,
+            ),
+          ),
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.grey,
+          ),
+          onTap: onTap,
+        ),
+        if (showBorder)
+          const Divider(
+            height: 1,
+            indent: 70,
+            endIndent: 20,
+          ),
+      ],
     );
   }
 }
