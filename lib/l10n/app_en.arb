@@ -14,6 +14,7 @@
     "categoryElectronics": "Electronics",
     "categoryFashion": "Fashion",
     "categoryHome": "Home",
+    "greeting": "Hi, ",
     
     "@_PROFILE_MESSAGES": {},
     "turnSeller": "Turn Seller",
@@ -87,5 +88,19 @@
     "@_VALIDATION": {},
     "enterValidEmail": "Please enter a valid email address",
     "enterValidPassword": "Password must be at least 6 characters",
-    "enterValidName": "Please enter your name"
+    "enterValidName": "Please enter your name",
+    
+    "@_ORDERS_WIDGET": {},
+    "seeAll": "See All",
+    "statusDelivered": "Delivered",
+    "statusInTransit": "In Transit",
+    "statusProcessing": "Processing",
+    "statusShipped": "Shipped",
+    "statusCancelled": "Cancelled",
+    "statusOnHold": "On Hold",
+    "statusPending": "Pending",
+    "statusRefunded": "Refunded",
+    "statusPackaging": "Packaging",
+    "statusReadyToShip": "Ready to Ship",
+    "statusOutForDelivery": "Out for Delivery"
 }

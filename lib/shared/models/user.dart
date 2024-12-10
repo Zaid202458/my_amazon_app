@@ -7,6 +7,7 @@ class User {
   final String password;
   final String type;
   final String token;
+  final String address;
 
   User({
     required this.id,
@@ -15,6 +16,7 @@ class User {
     required this.password,
     required this.type,
     required this.token,
+    this.address = '',
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class User {
       'password': password,
       'type': type,
       'token': token,
+      'address': address,
     };
   }
 
@@ -36,6 +39,7 @@ class User {
       password: map['password'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
+      address: map['address'] ?? '',
     );
   }
 
@@ -50,6 +54,7 @@ class User {
     String? password,
     String? type,
     String? token,
+    String? address,
   }) {
     return User(
       id: id ?? this.id,
@@ -58,12 +63,13 @@ class User {
       password: password ?? this.password,
       type: type ?? this.type,
       token: token ?? this.token,
+      address: address ?? this.address,
     );
   }
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email, password: $password, type: $type, token: $token)';
+    return 'User(id: $id, name: $name, email: $email, password: $password, type: $type, token: $token, address: $address)';
   }
 
   @override
@@ -76,7 +82,8 @@ class User {
         other.email == email &&
         other.password == password &&
         other.type == type &&
-        other.token == token;
+        other.token == token &&
+        other.address == address;
   }
 
   @override
@@ -86,6 +93,7 @@ class User {
         email.hashCode ^
         password.hashCode ^
         type.hashCode ^
-        token.hashCode;
+        token.hashCode ^
+        address.hashCode;
   }
 }

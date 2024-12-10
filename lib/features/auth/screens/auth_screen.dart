@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/common/widgets/custom_buttons.dart';
-import 'package:my_amazon_app/common/widgets/custom_textfields.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/shared/widgets/custom_buttons.dart';
+import 'package:my_amazon_app/shared/widgets/custom_textfields.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:my_amazon_app/providers/language_provider.dart';
+import 'package:my_amazon_app/shared/providers/language_provider.dart';
 
 enum Auth {
   signin,
@@ -43,8 +43,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final languageProvider = Provider.of<LanguageProvider>(context);
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
     final isArabic = languageProvider.isArabic;
 
     return Scaffold(
@@ -59,7 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Image.asset(
-                  'assets/images/amazon_in.png',
+                  'assets/images/amazon-logo.png',
                   height: 50,
                 ),
               ),

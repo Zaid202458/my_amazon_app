@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/models/user.dart';
+import 'package:my_amazon_app/shared/models/user.dart';
 
 class UserProvider extends ChangeNotifier {
   User _user = User(

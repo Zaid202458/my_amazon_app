@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/constants/global_var.dart';
+import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// ودجت مربع العنوان
 /// يعرض عنوان التوصيل الحالي للمستخدم مع إمكانية تغييره
