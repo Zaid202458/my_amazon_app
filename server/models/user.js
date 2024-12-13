@@ -35,6 +35,10 @@ const userSchema = mongoose.Schema({
         default:"user",
 
     },
+    address: {
+        type: String,
+        default: "",
+    },
 });
 
 const User=mongoose.model("User",userSchema);

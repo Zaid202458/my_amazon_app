@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_amazon_app/core/constants/global_var.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_amazon_app/shared/providers/user_provider.dart';
+
 /// ودجت مربع العنوان
 /// يعرض عنوان التوصيل الحالي للمستخدم مع إمكانية تغييره
 class AddressBox extends StatelessWidget {
@@ -8,11 +10,15 @@ class AddressBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     final l10n = AppLocalizations.of(context)!;
     return Container(
       height: 40,
       decoration: const BoxDecoration(
-        gradient: GlobalVar.appBarGradient,
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 114, 226, 221),
+          Color.fromARGB(255, 162, 236, 233),
+        ]),
       ),
       padding: const EdgeInsets.only(left: 10),
       child: Row(
@@ -22,7 +28,7 @@ class AddressBox extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Text(
-                l10n.deliveryAddress,
+                '${l10n.deliveryTo} ${user.name}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),

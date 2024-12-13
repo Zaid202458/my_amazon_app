@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_amazon_app/features/profile/widgets/account_buttons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_amazon_app/features/auth/services/auth_service.dart';
 
 class MainButtons extends StatefulWidget {
   const MainButtons({super.key});
@@ -10,6 +11,12 @@ class MainButtons extends StatefulWidget {
 }
 
 class _MainButtonsState extends State<MainButtons> {
+  final AuthService authService = AuthService();
+
+  void _handleLogout() {
+    authService.logOut(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +40,7 @@ class _MainButtonsState extends State<MainButtons> {
             ),
             AccountButtons(
               txt: AppLocalizations.of(context)!.logOut,
-              onClick: () {},
+              onClick: _handleLogout,
             ),
           ],
         ),

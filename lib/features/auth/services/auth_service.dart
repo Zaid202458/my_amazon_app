@@ -21,6 +21,7 @@ class AuthService {
     required String email,
     required String password,
     required String name,
+    required String address,
   }) async {
     try {
       User user = User(
@@ -28,6 +29,7 @@ class AuthService {
         name: name,
         email: email,
         password: password,
+        address: address,
         type: '',
         token: '',
       );
@@ -143,11 +145,21 @@ class AuthService {
         );
 
         var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUserFromModel(User.fromJson(userRes.body));
+        var userData = jsonDecode(userRes.body);
+        var user = User(
+          id: userData['_id'] ?? '',
+          name: userData['name'] ?? '',
+          email: userData['email'] ?? '',
+          password: userData['password'] ?? '',
+          address: userData['address'] ?? '',
+          type: userData['type'] ?? '',
+          token: token,
+        );
+        userProvider.setUser(jsonEncode(user.toMap()));
       }
     } catch (e) {
       final l10n = AppLocalizations.of(context)!;
-      print('Get user data error: $e'); // Log the specific error
+      print('Get user data error: $e');
       if (e is SocketException) {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
       } else if (e is FormatException) {
@@ -156,6 +168,20 @@ class AuthService {
       } else {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
       }
+    }
+  }
+
+  Future<void> logOut(BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('x-auth-token', '');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/auth_screen',
+        (route) => false,
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
     }
   }
 }

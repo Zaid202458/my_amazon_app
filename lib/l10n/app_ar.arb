@@ -9,7 +9,6 @@
     "profile": "الملف الشخصي",
     "cart": "السلة",
     "deliveryTo": "التوصيل إلى",
-    "deliveryAddress": "التوصيل إلى جون - نيويورك 10001",
     "categoryMobiles": "الجوالات",
     "categoryElectronics": "الإلكترونيات",
     "categoryFashion": "الأزياء",
@@ -53,7 +52,7 @@
     "errorInvalidCredentials": "بيانات الاعتماد غير صالحة",
     "errorNetworkIssue": "خطأ في الاتصال بالشبكة",
     "errorTryAgain": "يرجى المحاولة مرة أخرى",
-    "errorSessionExpired": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى",
+    "errorSessionExpired": "انته�� الجلسة، يرجى تسجيل الدخول مرة أخرى",
     "errorUnauthorized": "وصول غير مصرح به",
 
     "@_AUTH_MESSAGES": {},
@@ -100,5 +99,6 @@
     "statusCancelled": "ملغى",
     "statusOnHold": "معلق",
     "statusPending": "قيد الانتظار",
-    "statusRefunded": "تم استرداد المبلغ"
+    "statusRefunded": "تم استرداد المبلغ",
+    "address": "العنوان"
 }

@@ -9,7 +9,6 @@
     "profile": "Profile",
     "cart": "Cart",
     "deliveryTo": "Delivery to",
-    "deliveryAddress": "Delivery to John - New York 10001",
     "categoryMobiles": "Mobiles",
     "categoryElectronics": "Electronics",
     "categoryFashion": "Fashion",
@@ -102,5 +101,6 @@
     "statusRefunded": "Refunded",
     "statusPackaging": "Packaging",
     "statusReadyToShip": "Ready to Ship",
-    "statusOutForDelivery": "Out for Delivery"
+    "statusOutForDelivery": "Out for Delivery",
+    "address": "Address"
 }

@@ -5,18 +5,18 @@ class User {
   final String name;
   final String email;
   final String password;
+  final String address;
   final String type;
   final String token;
-  final String address;
 
   User({
     required this.id,
     required this.name,
     required this.email,
     required this.password,
+    required this.address,
     required this.type,
     required this.token,
-    this.address = '',
   });
 
   Map<String, dynamic> toMap() {
@@ -25,9 +25,9 @@ class User {
       'name': name,
       'email': email,
       'password': password,
+      'address': address,
       'type': type,
       'token': token,
-      'address': address,
     };
   }
 
@@ -37,9 +37,9 @@ class User {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       password: map['password'] ?? '',
+      address: map['address'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
-      address: map['address'] ?? '',
     );
   }
 
@@ -52,24 +52,24 @@ class User {
     String? name,
     String? email,
     String? password,
+    String? address,
     String? type,
     String? token,
-    String? address,
   }) {
     return User(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
+      address: address ?? this.address,
       type: type ?? this.type,
       token: token ?? this.token,
-      address: address ?? this.address,
     );
   }
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email, password: $password, type: $type, token: $token, address: $address)';
+    return 'User(id: $id, name: $name, email: $email, password: $password, address: $address, type: $type, token: $token)';
   }
 
   @override
@@ -81,9 +81,9 @@ class User {
         other.name == name &&
         other.email == email &&
         other.password == password &&
+        other.address == address &&
         other.type == type &&
-        other.token == token &&
-        other.address == address;
+        other.token == token;
   }
 
   @override
@@ -92,8 +92,8 @@ class User {
         name.hashCode ^
         email.hashCode ^
         password.hashCode ^
+        address.hashCode ^
         type.hashCode ^
-        token.hashCode ^
-        address.hashCode;
+        token.hashCode;
   }
 }
