@@ -13,14 +13,16 @@ class AppBarText extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final userProvider = Provider.of<UserProvider>(context).user;
-    
+
     return Container(
       decoration: const BoxDecoration(
-        gradient: GlobalVar.appBarGradient,
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 114, 226, 221),
+          Color.fromARGB(255, 162, 236, 233),
+        ]),
       ),
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Column(
@@ -29,38 +31,36 @@ class AppBarText extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     text: l10n.greeting,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.black87,
+                        ),
                     children: [
                       TextSpan(
                         text: userProvider.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 6),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.location_on_outlined,
-                      size: 18,
-                      color: Colors.black,
+                      size: 16,
+                      color: Colors.black87.withOpacity(0.8),
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 4),
                     Expanded(
                       child: Text(
-                        'Deliver to ${userProvider.address}',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black87,
-                        ),
+                        '${l10n.deliveryTo} ${userProvider.address}',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.black87.withOpacity(0.8),
+                            ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -70,17 +70,31 @@ class AppBarText extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 12),
           GestureDetector(
-            onTap: () {
-              Scaffold.of(context).openEndDrawer();
-            },
-            child: CircleAvatar(
-              backgroundColor: Colors.grey[200],
-              child: Text(
-                userProvider.name[0].toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+            onTap: () => Scaffold.of(context).openEndDrawer(),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor:
+                    Theme.of(context).primaryColor.withOpacity(0.1),
+                child: Text(
+                  userProvider.name[0].toUpperCase(),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             ),
