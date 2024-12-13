@@ -47,13 +47,11 @@ class _BottomBarState extends State<BottomBar> {
           ),
           BottomNavigationBarItem(
             icon: const badges.Badge(
-              badgeContent:
-                  Text('2', style: TextStyle(color: Colors.white)),
+              badgeContent: Text('2', style: TextStyle(color: Colors.white)),
               child: Icon(Icons.shopping_cart_outlined),
             ),
             activeIcon: const badges.Badge(
-              badgeContent:
-                  Text('2', style: TextStyle(color: Colors.white)),
+              badgeContent: Text('2', style: TextStyle(color: Colors.white)),
               child: Icon(Icons.shopping_cart),
             ),
             label: l10n.cart,
