@@ -57,7 +57,8 @@ class AuthService {
       if (e is SocketException) {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
       } else if (e is FormatException) {
-        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+        showSnackBar(
+            context, '${l10n.errorSomethingWentWrong}: Invalid data format');
       } else {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
       }
@@ -70,7 +71,6 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-
     try {
       http.Response res = await http.post(
         Uri.parse('$uri/api/signin'),
@@ -104,13 +104,13 @@ class AuthService {
       if (e is SocketException) {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
       } else if (e is FormatException) {
-        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+        showSnackBar(
+            context, '${l10n.errorSomethingWentWrong}: Invalid data format');
       } else {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
       }
     }
   }
-
 
   // get user data
   Future<void> getUserData(BuildContext context) async {
@@ -151,7 +151,8 @@ class AuthService {
       if (e is SocketException) {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: Network error');
       } else if (e is FormatException) {
-        showSnackBar(context, '${l10n.errorSomethingWentWrong}: Invalid data format');
+        showSnackBar(
+            context, '${l10n.errorSomethingWentWrong}: Invalid data format');
       } else {
         showSnackBar(context, '${l10n.errorSomethingWentWrong}: $e');
       }

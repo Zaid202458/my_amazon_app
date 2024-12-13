@@ -7,7 +7,7 @@ import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
 import 'package:my_amazon_app/features/home/screens/home_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  static const String routeName = '/actual-home';
+  static const String routeName = '/home';
   const BottomBar({super.key});
 
   @override

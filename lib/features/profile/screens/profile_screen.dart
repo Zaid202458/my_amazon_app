@@ -75,7 +75,9 @@ class ProfileScreen extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: size.height - kToolbarHeight - MediaQuery.of(context).padding.top,
+              minHeight: size.height -
+                  kToolbarHeight -
+                  MediaQuery.of(context).padding.top,
             ),
             child: const Column(
               children: [
@@ -90,6 +92,48 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildOptionTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    bool showBorder = true,
+    bool isDestructive = false,
+  }) {
+    return Column(
+      children: [
+        ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          leading: Icon(
+            icon,
+            color: isDestructive ? Colors.red : GlobalVar.secondaryColor,
+            size: 28,
+          ),
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: isDestructive ? Colors.red : Colors.black87,
+            ),
+          ),
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.grey,
+          ),
+          onTap: onTap,
+        ),
+        if (showBorder)
+          const Divider(
+            height: 1,
+            indent: 70,
+            endIndent: 20,
+          ),
+      ],
     );
   }
 }
