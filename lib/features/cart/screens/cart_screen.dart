@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_amazon_app/core/constants/global_var.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:my_amazon_app/shared/providers/language_provider.dart';
+// import 'package:my_amazon_app/shared/providers/language_provider.dart';
 import 'package:my_amazon_app/shared/providers/cart_provider.dart';
 import 'package:my_amazon_app/features/cart/widgets/cart_item_card.dart';
 
@@ -18,9 +18,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final languageProvider = Provider.of<LanguageProvider>(context);
+    // final languageProvider = Provider.of<LanguageProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context);
-    final isArabic = languageProvider.isArabic;
+    // final isArabic = languageProvider.isArabic;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -66,7 +66,8 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget _buildCartContent(BuildContext context, AppLocalizations l10n, CartProvider cartProvider) {
+  Widget _buildCartContent(
+      BuildContext context, AppLocalizations l10n, CartProvider cartProvider) {
     final isCartEmpty = cartProvider.itemCount == 0;
 
     if (isCartEmpty) {
@@ -93,7 +94,8 @@ class _CartScreenState extends State<CartScreen> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: GlobalVar.secondaryColor,
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
               ),
               child: Text(l10n.startShopping),
             ),
@@ -172,4 +174,3 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-
