@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-/// ودجت صفقة اليوم
-/// يعرض المنتج المميز كصفقة اليوم مع تفاصيل السعر والخصم
-/// ويتضمن صور إضافية للمنتج وزر لعرض جميع العروض
+
 class DealOfDay extends StatelessWidget {
   const DealOfDay({super.key});
 
@@ -10,45 +8,49 @@ class DealOfDay extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          alignment: Alignment.topLeft,
-          padding: const EdgeInsets.only(left: 10, top: 15),
+        Padding(
+          padding: const EdgeInsets.all(15),
           child: Text(
             l10n.dealOfDay,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        Container(
+        Image.network(
+          'https://m.media-amazon.com/images/I/51wGeVLkCAL._AC_SX522_.jpg',
           height: 235,
-          width: double.infinity,
-          padding: const EdgeInsets.all(10),
-          child: const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.local_offer, size: 50),
-                SizedBox(height: 10),
-                Text(
-                  'Daily Deals Coming Soon!',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          ),
+          fit: BoxFit.contain,
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 15, top: 5, right: 40),
-          alignment: Alignment.topLeft,
+        Padding(
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
                 '\$100',
-                style:  TextStyle(fontSize: 18),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              const SizedBox(height: 10),
+              const Text(
+                "يوفي سيكيوريتي S380 هوم بيس 3 مركز أمان إيدج",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 20),
               Text(
                 l10n.specialDeal,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -57,32 +59,32 @@ class DealOfDay extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(
               4,
               (index) => Container(
                 width: 100,
                 height: 100,
-                margin: const EdgeInsets.symmetric(horizontal: 5),
+                margin: const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Center(
-                  child: Icon(Icons.image, size: 40),
+                  child: Icon(Icons.image, size: 40, color: Colors.grey),
                 ),
               ),
             ),
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 15).copyWith(left: 15),
-          alignment: Alignment.topLeft,
+        Padding(
+          padding: const EdgeInsets.all(15),
           child: Text(
             l10n.seeAllDeals,
-            style:  TextStyle(
+            style: TextStyle(
               color: Colors.cyan[800],
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://10.0.2.2:3000';  // 10.0.2.2 is the special IP for localhost when using Android emulator
+String uri =
+    'http://10.0.2.2:3000'; // 10.0.2.2 is the special IP for localhost when using Android emulator
 
 class GlobalVar {
   static const appBarColor = LinearGradient(
@@ -22,5 +23,50 @@ class GlobalVar {
     ],
     stops: [0.5, 1.0],
   );
-  // Replace with your actual local IP address
+
+  static const List<String> carouselImages = [
+    'https://m.media-amazon.com/images/G/40/Electronics/Store/kamja/L2/Laptops/New/Nav_03_4star._SS400_QL85_.jpg',
+    'https://m.media-amazon.com/images/G/40/Electronics/Store/kamja/L2/Electronics/Rotator/rotator_tvs._SS400_QL85_.jpg',
+    'https://m.media-amazon.com/images/G/40/Electronics/Store/kamja/L2/Electronics/Rotator/rotator_videogames._SS400_QL85_.jpg',
+    'https://m.media-amazon.com/images/G/40/Electronics/Store/kamja/L2/Electronics/Rotator/rotator_dvg_sa_ar._SS400_QL85_.jpg',
+  ];
+
+  static const List<Map<String, String>> categoriesImages = [
+    {
+      'title': 'Home ',
+      'image': 'assets/images/home.jpg',
+    },
+    {
+      'title': 'Beauty',
+      'image': 'assets/images/beauty.jpg',
+    },
+    {
+      'title': 'Electronics',
+      'image': 'assets/images/electronics.jpg',
+    },
+    {
+      'title': 'Fashion',
+      'image': 'assets/images/fashion.jpg',
+    },
+    {
+      'title': 'Grocery',
+      'image': 'assets/images/grocery.jpg',
+    },
+    {
+      'title': 'Mobile',
+      'image': 'assets/images/mobile.jpg',
+    },
+    {
+      'title': 'Kitchen',
+      'image': 'assets/images/kitchen.jpg',
+    },
+    {
+      'title': 'Sports',
+      'image': 'assets/images/sports.jpg',
+    },
+    {
+      'title': 'Health',
+      'image': 'assets/images/health.jpg',
+    },
+  ];
 }

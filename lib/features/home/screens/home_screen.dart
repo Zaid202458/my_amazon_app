@@ -137,18 +137,18 @@ class _HomeScreenState extends State<HomeScreen> {
           onRefresh: () async {
             // TODO: Implement refresh logic
           },
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
+          child: const SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
             child: Column(
               children: [
-                const AddressBox(),
-                const SizedBox(height: 10),
-                const TopCategories(),
-                const SizedBox(height: 10),
+                AddressBox(),
+                SizedBox(height: 10),
+                TopCategories(),
+                SizedBox(height: 10),
                 CarouselImages(),
-                const SizedBox(height: 10),
-                const DealOfDay(),
-                const SizedBox(height: 20),
+                SizedBox(height: 10),
+                DealOfDay(),
+                SizedBox(height: 20),
               ],
             ),
           ),

@@ -13,6 +13,11 @@
     "categoryElectronics": "Electronics",
     "categoryFashion": "Fashion",
     "categoryHome": "Home",
+    "categoryBeauty": "Beauty",
+    "categoryGrocery": "Grocery",
+    "categoryKitchen": "Kitchen",
+    "categorySports": "Sports",
+    "categoryHealth": "Health",
     "greeting": "Hi, ",
     
     "@_PROFILE_MESSAGES": {},

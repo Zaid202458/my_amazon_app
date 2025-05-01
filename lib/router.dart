@@ -3,7 +3,6 @@ import 'package:my_amazon_app/shared/widgets/bottom_bar.dart';
 import 'package:my_amazon_app/features/auth/screens/auth_screen.dart';
 import 'package:my_amazon_app/features/cart/screens/cart_screen.dart';
 import 'package:my_amazon_app/features/profile/screens/profile_screen.dart';
-import 'package:my_amazon_app/features/home/screens/home_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -11,11 +10,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const AuthScreen(),
-      );
-    case HomeScreen.routeName:
-      return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => const HomeScreen(),
       );
 
     case BottomBar.routeName:

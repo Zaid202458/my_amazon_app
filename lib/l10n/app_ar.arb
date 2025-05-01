@@ -13,6 +13,11 @@
     "categoryElectronics": "الإلكترونيات",
     "categoryFashion": "الأزياء",
     "categoryHome": "المنزل",
+    "categoryBeauty": "الجمال",
+    "categoryGrocery": "البقالة",
+    "categoryKitchen": "المطبخ",
+    "categorySports": "الرياضة",
+    "categoryHealth": "الصحة",
     "greeting": "مرحباً، ",
     
     "@_PROFILE_MESSAGES": {},
@@ -52,7 +57,7 @@
     "errorInvalidCredentials": "بيانات الاعتماد غير صالحة",
     "errorNetworkIssue": "خطأ في الاتصال بالشبكة",
     "errorTryAgain": "يرجى المحاولة مرة أخرى",
-    "errorSessionExpired": "انته�� الجلسة، يرجى تسجيل الدخول مرة أخرى",
+    "errorSessionExpired": "انته الجلسة، يرجى تسجيل الدخول مرة أخرى",
     "errorUnauthorized": "وصول غير مصرح به",
 
     "@_AUTH_MESSAGES": {},

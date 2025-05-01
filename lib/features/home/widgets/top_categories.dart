@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/constants/global_var.dart';
+
+class Category {
+  final String title;
+  final IconData icon;
+
+  const Category({required this.title, required this.icon});
+}
+
 /// ودجت الفئات الرئيسية
 /// يعرض قائمة أفقية للفئات الرئيسية مثل الجوالات والإلكترونيات والأزياء
 /// مع إمكانية التنقل بينها بسهولة
@@ -10,18 +19,23 @@ class TopCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final categories = [
-      {'title': l10n.categoryMobiles},
-      {'title': l10n.categoryElectronics},
-      {'title': l10n.categoryFashion},
-      {'title': l10n.categoryHome},
+    final categoryTitles = [
+      l10n.categoryHome,
+      l10n.categoryBeauty,
+      l10n.categoryElectronics,
+      l10n.categoryFashion,
+      l10n.categoryGrocery,
+      l10n.categoryMobiles,
+      l10n.categoryKitchen,
+      l10n.categorySports,
+      l10n.categoryHealth,
     ];
 
     return SizedBox(
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
+        itemCount: GlobalVar.categoriesImages.length,
         itemExtent: 100,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -38,14 +52,20 @@ class TopCategories extends StatelessWidget {
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Icon(Icons.category, size: 30),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(
+                      GlobalVar.categoriesImages[index]['image']!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  categories[index]['title']!,
+                  categoryTitles[index],
                   style: const TextStyle(
                     fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
